@@ -473,7 +473,7 @@ const MindMap = () => {
 
 	return (
 		<>
-			<div className={classes.titleContainer}>
+			<div className={classes.titleContainer} >
 				{/* <Box className={classes.action_box}>
 					<Button
 						variant="contained"
