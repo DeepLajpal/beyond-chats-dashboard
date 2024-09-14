@@ -14,7 +14,7 @@ import PaginationItem from "@mui/material/PaginationItem";
 import makeStyles from "@mui/styles/makeStyles";
 import MenuItem from "@mui/material/MenuItem";
 import Pagination from "@mui/material/Pagination";
-import { Chip, Stack } from "@mui/material";
+import { Chip, Divider, Stack } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Swal from "sweetalert2/dist/sweetalert2";
 import { useMediaQuery, useTheme } from "@mui/material";
@@ -34,6 +34,9 @@ import { DialogLoader, SmallLoader } from "components/common/NewLoader";
 import { fromUnixTime } from "date-fns";
 import ReadMoreLess from "components/common/ReadMoreLess";
 import mindMapData from "staticData/mindmap.json"
+import Grid from '@mui/material/Grid';
+import styled from '@mui/system/styled';
+import { red } from "react-color/lib/helpers/color";
 const VectorData = lazy(() => import("./VectorData"));
 const CustomNoRowsOverlay = lazy(
 	() => import("components/common/CustomNoRowsOverlay")
@@ -100,6 +103,19 @@ const useStyles = makeStyles((theme) => ({
 		flexWrap: "wrap",
 		justifyContent: "center",
 	},
+}));
+
+const Item = styled('div')(({ theme }) => ({
+	backgroundColor: '#fff',
+	border: '1px solid',
+	borderColor: '#ced7e0',
+	padding: theme.spacing(1),
+	borderRadius: '4px',
+	textAlign: 'center',
+	...theme.applyStyles('dark', {
+		backgroundColor: '#1A2027',
+		borderColor: '#444d58',
+	}),
 }));
 
 const MindMap = () => {
@@ -222,6 +238,7 @@ const MindMap = () => {
 			{
 				field: "data",
 				headerName: "Data",
+				headerClassName: 'custom-header',
 				align: "left",
 				headerAlign: "left",
 				flex: 1,
@@ -252,6 +269,7 @@ const MindMap = () => {
 			{
 				field: "source",
 				headerName: "Source",
+				headerClassName: 'custom-header',
 				align: "center",
 				headerAlign: "center",
 				filterable: false,
@@ -277,21 +295,22 @@ const MindMap = () => {
 			},
 			...(hasSearched
 				? [
-						{
-							field: "score",
-							headerName: "Score",
-							align: "center",
-							headerAlign: "center",
-							filterable: true,
-							renderCell: (params) => (
-								<Typography variant="subtitle2">{params.row.score}</Typography>
-							),
-						},
-					]
+					{
+						field: "score",
+						headerName: "Score",
+						align: "center",
+						headerAlign: "center",
+						filterable: true,
+						renderCell: (params) => (
+							<Typography variant="subtitle2">{params.row.score}</Typography>
+						),
+					},
+				]
 				: []),
 			{
 				field: "type",
 				headerName: "Type",
+				headerClassName: 'custom-header',
 				align: "center",
 				headerAlign: "center",
 				filterable: true,
@@ -308,11 +327,12 @@ const MindMap = () => {
 			{
 				field: "created_at",
 				headerName: "Created At",
+				headerClassName: 'custom-header',
 				align: "center",
 				headerAlign: "center",
 				filterable: true,
 				renderCell: (params) => (
-					<Typography variant="subtitle2">
+					<Typography variant="subtitle2" >
 						{fromUnixTime(
 							params.row?.metadata?.created_at
 						).toLocaleDateString()}
@@ -332,6 +352,7 @@ const MindMap = () => {
 			{
 				field: "actions",
 				headerName: "Actions",
+				headerClassName: 'custom-header',
 				align: "center",
 				headerAlign: "center",
 				filterable: false,
@@ -411,7 +432,7 @@ const MindMap = () => {
 	return (
 		<>
 			<div className={classes.titleContainer}>
-				<Box className={classes.action_box}>
+				{/* <Box className={classes.action_box}>
 					<Button
 						variant="contained"
 						color="primary"
@@ -453,15 +474,17 @@ const MindMap = () => {
 							</Typography>
 						</Button>
 					) : null}
-				</Box>
-				<hr
+				</Box> */}
+
+				{/* Line Divider */}
+				{/* <hr
 					style={{
 						width: "80%",
 						margin: "10px 0",
 						border: "0.01rem solid grey",
 					}}
-				/>
-				<form
+				/> */}
+				{/* <form
 					onSubmit={handleSubmit(searchVectors)}
 					className={classes.search_container}
 				>
@@ -504,75 +527,203 @@ const MindMap = () => {
 							Clear Results
 						</Button>
 					) : null}
-				</form>
+				</form> */}
+
+
+				<Box >
+					<Grid container spacing={2} mb={2} alignItems="center">
+						<Grid item xs={2}>
+							<Typography variant="h4" component="span">
+								Hello Ritika 👋🏼,
+							</Typography>
+						</Grid>
+						<Grid item xs={10}>
+							<Typography variant="subtitle2" component="subtitle2" sx={{ color: "#8A8A8A" }} >
+								This is the brain and the memory of the chatbot. You can add, edit and analyse , the source data being used to answer user queries from here.
+							</Typography>
+						</Grid>
+					</Grid>
+
+					<Box
+						sx={{
+							padding: "2rem",
+							borderRadius: "1rem",
+							marginTop: "2rem",
+							boxShadow: "0 0 9px 0px #eaeaea",
+						}}
+					>
+						<Grid container alignItems="center" justifyContent="space-between" spacing={2}>
+							{/* Add Data Button */}
+							<Grid item xs={3} display="flex" justifyContent="center">
+								<Grid container alignItems="center" spacing={1} justifyContent="center">
+									<Grid item>
+										<Button
+											sx={{
+												backgroundColor: "#D3FFE7",
+												borderRadius: "50%",
+												minWidth: "56px",
+												height: "56px",
+												"&:hover": {
+													backgroundColor: "rgba(144, 238, 144, 0.8)",
+												},
+											}}
+											onClick={handleOpenAddDialog}
+										>
+											<AddIcon sx={{ color: "#00AC4F", fontSize: "24px" }} />
+										</Button>
+									</Grid>
+									<Grid item>
+										<Typography variant="h6" component="span" align="center">
+											Add Data
+										</Typography>
+									</Grid>
+								</Grid>
+							</Grid>
+
+							{/* Vertical Divider */}
+							<Grid item>
+								<Divider orientation="vertical" flexItem sx={{ borderColor: "lightgray", height: "56px" }} />
+							</Grid>
+
+							{/* Data Training Status Button */}
+							<Grid item xs={4} display="flex" justifyContent="center">
+								<Grid container alignItems="center" spacing={1} justifyContent="center">
+									<Grid item>
+										<Button
+											sx={{
+												backgroundColor: "#FFA7C6",
+												borderRadius: "50%",
+												minWidth: "56px",
+												height: "56px",
+												"&:hover": {
+													backgroundColor: "#FFA7C6",
+												},
+											}}
+											onClick={handleOpenTasksDialog}
+										>
+											<HistoryIcon sx={{ color: "#FA2871", fontSize: "24px" }} />
+										</Button>
+									</Grid>
+									<Grid item>
+										<Typography variant="h6" component="span" align="center">
+											Data Training Status
+										</Typography>
+									</Grid>
+								</Grid>
+							</Grid>
+
+							{/* Vertical Divider */}
+							<Grid item>
+								<Divider orientation="vertical" flexItem sx={{ borderColor: "lightgray", height: "56px" }} />
+							</Grid>
+
+							{/* Ground Truths Button */}
+							<Grid item xs={3} display="flex" justifyContent="center">
+								<Grid container alignItems="center" spacing={1} justifyContent="center">
+									<Grid item>
+										<Button
+											sx={{
+												backgroundColor: "#FFA7C6",
+												borderRadius: "50%",
+												minWidth: "56px",
+												height: "56px",
+												"&:hover": {
+													backgroundColor: "#FFA7C6",
+												},
+											}}
+											onClick={handleOpenGroundTruthDialog}
+										>
+											<QuestionAnswerIcon sx={{ color: "#FA2871", fontSize: "24px" }} />
+										</Button>
+									</Grid>
+									<Grid item>
+										<Typography variant="h6" component="span" align="center">
+											Ground Truths
+										</Typography>
+									</Grid>
+								</Grid>
+							</Grid>
+						</Grid>
+					</Box>
+
+					{/* Table Container Box */}
+					<Box sx={{ padding: "10px", padding: "2rem", paddingTop: "5rem", borderRadius: "1rem", height: "100%", boxShadow: "0 0 9px 0px #eaeaea", marginTop: "2rem" }} >
+						{isSmScreen ? (
+							loading ? (
+								<SmallLoader />
+							) : (
+								<Suspense fallback={<SmallLoader />}>
+									<Box >
+										{data.map((item) => (
+											<VectorData
+												key={item.vector_id}
+												data={item}
+												handleOpenEditDialog={handleOpenEditDialog}
+												handleDelete={handleDelete}
+											/>
+										))}
+									</Box>
+								</Suspense>
+							)
+						) : (
+							<Box sx={{ width: "100%", minWidth: "960px"}}>
+								<DataGrid
+									rows={data}
+									columns={columns}
+									loading={loading}
+									autoHeight
+									getRowId={getRowId}
+									slots={{
+										noRowsOverlay: CustomNoRowsOverlay,
+									}}
+									slotProps={{
+										noRowsOverlay: {
+											title:
+												"Looks like you have not added any data, click on the Add Data Button above",
+										},
+										loadingOverlay: {
+											title: "Loading...",
+										},
+									}}
+									disableSelectionOnClick
+									disableRowSelectionOnClick
+									hideFooter
+									getRowHeight={() => "auto"}
+									sx={{
+										border: "none",
+										"& .custom-header": { // Target the custom header class
+										  color: "#8A8A8A", // Change the header color
+										},
+									  }}
+								/>
+							</Box>
+						)}
+
+						<Stack spacing={2} alignItems="center" my={1}>
+							<Pagination
+								page={page}
+								count={count}
+								sx={{ m: "10px auto" }}
+								color="primary"
+								renderItem={(item) => {
+									const searchParams = new URLSearchParams(location.search);
+									searchParams.set("page", item.page);
+									return (
+										<PaginationItem
+											component={Link}
+											to={`${location.pathname}?${searchParams.toString()}`}
+											{...item}
+										/>
+									);
+								}}
+							/>
+						</Stack>
+					</Box>
+
+
+				</Box>
 			</div>
 
-			<Box sx={{ padding: "10px", borderRadius: "8px", height: "100%" }}>
-				{isSmScreen ? (
-					loading ? (
-						<SmallLoader />
-					) : (
-						<Suspense fallback={<SmallLoader />}>
-							<Box>
-								{data.map((item) => (
-									<VectorData
-										key={item.vector_id}
-										data={item}
-										handleOpenEditDialog={handleOpenEditDialog}
-										handleDelete={handleDelete}
-									/>
-								))}
-							</Box>
-						</Suspense>
-					)
-				) : (
-					<Box sx={{ width: "100%", minWidth: "960px" }}>
-						<DataGrid
-							rows={data}
-							columns={columns}
-							loading={loading}
-							autoHeight
-							getRowId={getRowId}
-							slots={{
-								noRowsOverlay: CustomNoRowsOverlay,
-							}}
-							slotProps={{
-								noRowsOverlay: {
-									title:
-										"Looks like you have not added any data, click on the Add Data Button above",
-								},
-								loadingOverlay: {
-									title: "Loading...",
-								},
-							}}
-							disableSelectionOnClick
-							disableRowSelectionOnClick
-							hideFooter
-							getRowHeight={() => "auto"}
-						/>
-					</Box>
-				)}
-
-				<Stack spacing={2} alignItems="center" my={1}>
-					<Pagination
-						page={page}
-						count={count}
-						sx={{ m: "10px auto" }}
-						color="primary"
-						renderItem={(item) => {
-							const searchParams = new URLSearchParams(location.search);
-							searchParams.set("page", item.page);
-							return (
-								<PaginationItem
-									component={Link}
-									to={`${location.pathname}?${searchParams.toString()}`}
-									{...item}
-								/>
-							);
-						}}
-					/>
-				</Stack>
-			</Box>
 
 			<Suspense fallback={<></>}>
 				<AddDataDialog {...{ openAddDialog, setData, setOpenAddDialog }} />

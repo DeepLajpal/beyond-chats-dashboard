@@ -288,11 +288,13 @@ function AppRoutes() {
 			</Backdrop>
 			<Switch>
 				<Route path="/">
-					<Navbar
+                  {/* hide due to improved ui */}
+					{/* <Navbar
 						navOptions={navOptions}
 						setShowStartTutorial={setShowStartTutorial}
 						toggleLeftNav={toggleLeftNav}
-					/>
+					/> */}
+
 					<Suspense fallback={<NewLoader firstPage={true} name="routes" />}>
 						<Switch>
 							<Route exact path="/login" component={SignIn} />

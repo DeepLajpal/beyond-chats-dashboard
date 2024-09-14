@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
 		outline: "0.1rem solid rgba(224, 224, 224, 0.5)",
 		backgroundColor: "#fff",
 		marginBottom: "1rem",
+		
 	},
 
 	source_type_container: {
@@ -62,13 +63,13 @@ const useStyles = makeStyles((theme) => ({
 const VectorData = ({ data, handleOpenEditDialog, handleDelete }) => {
 	const classes = useStyles();
 	return (
-		<Box className={classes.root}>
+		<Box className={classes.root} >
 			<ReadMoreLess height={50}>{data?.metadata?.text}</ReadMoreLess>
 			<Box className={classes.source_type_container}>
 				<Typography
 					variant="caption"
 					color="textPrimary"
-					className={classes.source_type}
+					className={classes.source_type} 
 				>
 					{data?.metadata?.source_type ?? "Unknown Source"}
 				</Typography>
