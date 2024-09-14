@@ -7,6 +7,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { Box, Button, Tooltip, Typography, styled } from "@mui/material";
+import {makeStyles } from "@mui/styles"
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import MenuIcon from "@mui/icons-material/Menu";
 import MuiDrawer from "@mui/material/Drawer";
@@ -14,6 +15,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { useResponsiveContext } from "context/ResponsiveContext";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import { KeyboardArrowDown } from "@mui/icons-material";
 
 // Drawer header styling for alignment
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -70,18 +72,61 @@ const Drawer = styled(MuiDrawer, {
 	}),
 }));
 
-
+const useStyles2 = makeStyles((theme) => ({
+	org: {
+		display: "flex",
+		alignItems: "center",
+		padding: "0.5rem 1rem",
+		cursor: "pointer",
+		color: "var(--primary)",
+		borderRadius: 8,
+		"&:hover": {
+			backgroundColor: "#f6f2f2",
+		},
+	},
+	orgName: {
+		color: "white",
+		fontSize:"1rem",
+		fontWeight:"600",
+	},
+	noOrg: {
+		color: "var(--color5)",
+		fontSize: "0.82rem",
+		fontWeight: "400",
+		height: "100%",
+		display: "flex",
+		width: "180px",
+		padding: "0.5rem 1rem",
+		lineHeight: "1.5",
+	},
+	orgBtn: {
+		border: "none",
+		outline: "none",
+		color: "white",
+		borderRadius: "0.5rem",
+		fontWeight:"600",
+		// background:"lightblue",
+		backgroundImage: "linear-gradient(to bottom right, #EAABF0, #6848ff)",
+		padding:"1rem",
+		// "&:hover": {
+		// 	backgroundColor: "transparent",
+		// },
+	},
+	orgSelector: {
+		top: "51px !important",
+		right: "65px !important",
+		maxHeight: "80vh",
+		overflowY: "scroll",
+	},
+}));
 
 
 // Main component to render LeftDrawer
-const LeftDrawer = ({ isOpened, toggleLeftNav, navOptions }) => {
-	const history = useHistory();
+const LeftDrawer = ({ isOpened, toggleLeftNav, navOptions, setShowStartTutorial }) => {
 	const { isMobile } = useResponsiveContext();
-	
-	const [showStartTutorial, setShowStartTutorial] = useState(() => {
-		const searchParams = new URLSearchParams(history.location.search);
-		return searchParams.get("guide") === "true";
-	});
+	const classes = useStyles2();
+
+
 	return (
 		<Drawer
 			variant="permanent"
@@ -115,6 +160,7 @@ const LeftDrawer = ({ isOpened, toggleLeftNav, navOptions }) => {
 							sx={{
 								display: "block",
 								backgroundColor: isActive ? "primary.light" : undefined, // Highlight active item
+								margin: "0.5rem"
 							}}
 							className={`nav-option-${index}`}
 						>
@@ -156,14 +202,49 @@ const LeftDrawer = ({ isOpened, toggleLeftNav, navOptions }) => {
 				))}
 			</List>
 
-			{!isMobile ? (
-				<Button
-					variant="outlined"
-					onClick={() => setShowStartTutorial(true)}
-				>
-					<Typography variant="h6">Guided Tour</Typography>
-				</Button>
-			) : null}
+			{/* Guided Tour BTN  */}
+			<Box display="flex" justifyContent="center" sx={{ margin: "0.8rem 0" }}>
+				{!isMobile && isOpened ? (
+					<Button
+						variant="outlined"
+						onClick={() => setShowStartTutorial(true)}
+						sx={{ width: "60%" }}
+					>
+						<Typography variant="h6">Guided Tour</Typography>
+					</Button>
+				) : null}
+			</Box>
+
+			{/* Select ORG  */}
+			{ isOpened && !isMobile ? <Box display="flex" justifyContent="center" sx={{marginTop:"5rem"}}>
+
+				<Tooltip title="View Orgs">
+					<Button
+						variant="text"
+						disableFocusRipple
+						disableTouchRipple
+						classes={{
+							root: classes.orgBtn,
+						}}
+						endIcon={<KeyboardArrowDown />}
+
+					// onClick={handleOpenOrgMenu}
+					>
+						<Typography
+							variant="h5"
+							component="div"
+						className={classes.orgName}
+						>
+							Select Org
+						</Typography>
+					</Button>
+				</Tooltip>
+
+			</Box> : null}
+
+			<Box>
+				<Grid xs:{} container ></Grid>
+			</Box>
 		</Drawer>
 	);
 };

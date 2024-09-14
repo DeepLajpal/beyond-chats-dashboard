@@ -306,7 +306,7 @@ function AppRoutes() {
 							<Route exact path="/forgot-password" component={ForgotPassword} />
 							{access_token && (
 								<>
-									<LeftDrawer {...{ isOpened, toggleLeftNav, navOptions }} />
+									<LeftDrawer {...{ isOpened, toggleLeftNav, navOptions, setShowStartTutorial }} />
 									<Suspense fallback={<></>}>
 										{showStartTutorial ? (
 											<ReactJoyride
