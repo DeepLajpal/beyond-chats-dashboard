@@ -6,12 +6,13 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { Box, Button, Tooltip, Typography, styled } from "@mui/material";
-import {makeStyles } from "@mui/styles"
+import { Avatar, Box, Button, Grid, Tooltip, Typography, styled } from "@mui/material";
+import { makeStyles } from "@mui/styles"
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import MenuIcon from "@mui/icons-material/Menu";
 import MuiDrawer from "@mui/material/Drawer";
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import PersonIcon from '@mui/icons-material/Person';
 import { useResponsiveContext } from "context/ResponsiveContext";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
@@ -86,8 +87,8 @@ const useStyles2 = makeStyles((theme) => ({
 	},
 	orgName: {
 		color: "white",
-		fontSize:"1rem",
-		fontWeight:"600",
+		fontSize: "1rem",
+		fontWeight: "600",
 	},
 	noOrg: {
 		color: "var(--color5)",
@@ -104,10 +105,10 @@ const useStyles2 = makeStyles((theme) => ({
 		outline: "none",
 		color: "white",
 		borderRadius: "0.5rem",
-		fontWeight:"600",
+		fontWeight: "600",
 		// background:"lightblue",
 		backgroundImage: "linear-gradient(to bottom right, #EAABF0, #6848ff)",
-		padding:"1rem",
+		padding: "1rem",
 		// "&:hover": {
 		// 	backgroundColor: "transparent",
 		// },
@@ -216,7 +217,7 @@ const LeftDrawer = ({ isOpened, toggleLeftNav, navOptions, setShowStartTutorial 
 			</Box>
 
 			{/* Select ORG  */}
-			{ isOpened && !isMobile ? <Box display="flex" justifyContent="center" sx={{marginTop:"5rem"}}>
+			{isOpened && !isMobile ? <Box display="flex" justifyContent="center" sx={{ marginTop: "5rem" }}>
 
 				<Tooltip title="View Orgs">
 					<Button
@@ -233,7 +234,7 @@ const LeftDrawer = ({ isOpened, toggleLeftNav, navOptions, setShowStartTutorial 
 						<Typography
 							variant="h5"
 							component="div"
-						className={classes.orgName}
+							className={classes.orgName}
 						>
 							Select Org
 						</Typography>
@@ -241,10 +242,52 @@ const LeftDrawer = ({ isOpened, toggleLeftNav, navOptions, setShowStartTutorial 
 				</Tooltip>
 
 			</Box> : null}
+			{/*  */}
+			{isOpened && !isMobile ? (
+				<Box
+					sx={{
+						marginTop: "2rem",
+						display: "flex",
+						justifyContent: "center",
+						width: "100%" // Ensure it takes full width of the container
+					}}
+				>
+					<Grid
+						container
+						sx={{
+							// border: "2px solid black", 
+							padding: "0.5rem", // Increased padding for better spacing
+							borderRadius: "8px", // Add rounded corners for better visual appeal
+							width: "60%",
+							maxWidth: "600px", // Max width for better responsiveness
+							// backgroundColor: "#f5f5f5", // Light background color for contrast
+							boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", // Add subtle shadow for depth
+						}}
+						justifyContent="center"
+						alignItems="center" // Center items vertically
+					>
+						<Grid item xs={4} sx={{marginRight:"1rem"}} display="flex" alignItems="center" justifyContent="center">
+							<Avatar sx={{ bgcolor: "#FFA7C6" }}>
+								<PersonIcon/>
+							</Avatar>
+						</Grid>
+						<Grid item xs={4} display="flex" alignItems="center" justifyContent="flex-end">
+							<Typography
+								variant="h5"
+								sx={{
+									fontWeight: "600",
+									fontSize: "1.25rem", // Adjust font size if needed
+									color: "#333", // Dark text color for readability
+								}}
+							>
+								Ritika
+							</Typography>
+						</Grid>
+					</Grid>
+				</Box>
+			) : null}
 
-			<Box>
-				<Grid xs:{} container ></Grid>
-			</Box>
+			{/*  */}
 		</Drawer>
 	);
 };
