@@ -14,7 +14,7 @@ import PaginationItem from "@mui/material/PaginationItem";
 import makeStyles from "@mui/styles/makeStyles";
 import MenuItem from "@mui/material/MenuItem";
 import Pagination from "@mui/material/Pagination";
-import { Chip, Divider, Stack } from "@mui/material";
+import { alpha, Chip, Divider, InputBase, Stack } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Swal from "sweetalert2/dist/sweetalert2";
 import { useMediaQuery, useTheme } from "@mui/material";
@@ -37,6 +37,8 @@ import mindMapData from "staticData/mindmap.json"
 import Grid from '@mui/material/Grid';
 import styled from '@mui/system/styled';
 import { red } from "react-color/lib/helpers/color";
+import SearchIcon from '@mui/icons-material/Search';
+
 const VectorData = lazy(() => import("./VectorData"));
 const CustomNoRowsOverlay = lazy(
 	() => import("components/common/CustomNoRowsOverlay")
@@ -100,7 +102,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 	search_container: {
 		display: "flex",
-		flexWrap: "wrap",
 		justifyContent: "center",
 	},
 }));
@@ -429,6 +430,47 @@ const MindMap = () => {
 	}, [org.host_url, page, order, sortBy]);
 	const getRowId = (row) => row.vector_id; // Assuming vector_id is the unique identifier for each row
 
+	// Search styling 
+	const Search = styled('div')(({ theme }) => ({
+		position: 'relative',
+		borderRadius: "0.5rem",
+		backgroundColor: "#F7F9FE",
+		'&:hover': {
+			backgroundColor: "#F7F9FE",
+		},
+		marginRight: theme.spacing(2),
+		marginLeft: 0,
+		width: '100%',
+		[theme.breakpoints.up('sm')]: {
+			marginLeft: theme.spacing(3),
+			width: 'auto',
+		},
+	}));
+
+	const SearchIconWrapper = styled('div')(({ theme }) => ({
+		padding: theme.spacing(0, 2),
+		height: '100%',
+		position: 'absolute',
+		pointerEvents: 'none',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+	}));
+
+	const StyledInputBase = styled(InputBase)(({ theme }) => ({
+		color: 'inherit',
+		'& .MuiInputBase-input': {
+			padding: theme.spacing(1, 1, 1, 0),
+			// vertical padding + font size from searchIcon
+			paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+			transition: theme.transitions.create('width'),
+			width: '100%',
+			[theme.breakpoints.up('md')]: {
+				width: '20ch',
+			},
+		},
+	}));
+
 	return (
 		<>
 			<div className={classes.titleContainer}>
@@ -647,7 +689,32 @@ const MindMap = () => {
 					</Box>
 
 					{/* Table Container Box */}
-					<Box sx={{ padding: "10px", padding: "2rem", paddingTop: "5rem", borderRadius: "1rem", height: "100%", boxShadow: "0 0 9px 0px #eaeaea", marginTop: "2rem" }} >
+					<Box sx={{ padding: "10px", padding: "2rem", borderRadius: "1rem", height: "100%", boxShadow: "0 0 9px 0px #eaeaea", marginTop: "2rem", }} >
+						<Box sx={ {padding: "0.5rem", marginBottom: "0.5rem" }}>
+							<Grid container alignItems="center" spacing={2} justifyContent="center" >
+								<Grid item xs={6} display="flex" ><Typography variant="h4" sx={{ fontWeight: "bold" }}>All Active Data</Typography> </Grid>
+
+								<Grid item xs={6} display="flex" justifyContent="flex-end" alignItems="center">
+									<form
+										onSubmit={handleSubmit(searchVectors)}
+										className={classes.search_container}
+									>
+										<Search>
+											<SearchIconWrapper>
+												<SearchIcon />
+											</SearchIconWrapper>
+											<StyledInputBase
+												placeholder="Search…"
+												inputProps={{ 'aria-label': 'search' }}
+												{...register("q", {
+													required: "Required",
+												})}
+											/>
+										</Search>
+									</form>
+								</Grid>
+							</Grid>
+						</Box>
 						{isSmScreen ? (
 							loading ? (
 								<SmallLoader />
@@ -666,7 +733,7 @@ const MindMap = () => {
 								</Suspense>
 							)
 						) : (
-							<Box sx={{ width: "100%", minWidth: "960px"}}>
+							<Box sx={{ width: "100%", minWidth: "960px" }}>
 								<DataGrid
 									rows={data}
 									columns={columns}
@@ -692,9 +759,9 @@ const MindMap = () => {
 									sx={{
 										border: "none",
 										"& .custom-header": { // Target the custom header class
-										  color: "#8A8A8A", // Change the header color
+											color: "#8A8A8A", // Change the header color
 										},
-									  }}
+									}}
 								/>
 							</Box>
 						)}
