@@ -40,23 +40,24 @@ export default function MobileBottomNav() {
   };
 
   return (
-    <Box >
-      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: "1000" }} elevation={3}>
+    <Box>
+      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1000 }} elevation={3}>
         <BottomNavigation
           showLabels
           value={value}
           onChange={handleNavChange}
           sx={{
             '& .MuiBottomNavigationAction-root': {
-              maxWidth: '100px',  // Limit width for each action
-              flex: 1, // Allow the actions to flexibly take up available space
-              minWidth: 0, // Avoid fixed min width so actions can resize
+              flex: 1,
+              minWidth: 0,
+              whiteSpace: 'nowrap',
+              fontSize: "0.7rem", // Set consistent font size for all items
             },
             '& .Mui-selected': {
-              fontSize: '0.875rem', // Ensure text size is not too large when selected
-              whiteSpace: 'nowrap', // Prevent text wrapping
-              overflow: 'hidden',   // Hide overflow if text is too long
-              textOverflow: 'ellipsis',  // Show ellipsis for truncated text
+              backgroundColor: "#2872FA", // Background for selected item
+              borderRadius: "0.5rem",
+              color: "white",
+              fontSize: "0.7rem", // Ensure the font size stays the same for selected item
             },
           }}
         >

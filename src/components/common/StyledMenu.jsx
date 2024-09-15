@@ -75,10 +75,10 @@ export default function CustomizedMenus() {
         disableElevation
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
-        sx={{background:"none", fontSize:"0.7rem"}}
+        sx={{background:"none",}}
 
       >
-        ORG
+        Select ORG
       </Button>
       <StyledMenu
         id="demo-customized-menu"
@@ -98,7 +98,6 @@ export default function CustomizedMenus() {
           Google
         </MenuItem>
       </StyledMenu>
-      
     </div>
   );
 }

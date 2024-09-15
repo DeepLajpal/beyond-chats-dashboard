@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 		outline: "0.1rem solid rgba(224, 224, 224, 0.5)",
 		backgroundColor: "#fff",
 		marginBottom: "1rem",
-		
+
 	},
 
 	source_type_container: {
@@ -69,7 +69,7 @@ const VectorData = ({ data, handleOpenEditDialog, handleDelete }) => {
 				<Typography
 					variant="caption"
 					color="textPrimary"
-					className={classes.source_type} 
+					className={classes.source_type}
 				>
 					{data?.metadata?.source_type ?? "Unknown Source"}
 				</Typography>
@@ -87,11 +87,24 @@ const VectorData = ({ data, handleOpenEditDialog, handleDelete }) => {
 							View Source
 						</a>
 					</Typography>
-					<Typography variant="subtitle1" color="textSecondary">
-						{new Intl.RelativeTimeFormat("en", {
-							numeric: "auto",
-						}).format(-new Date(data?.metadata?.created_at), "days")}
+					<Typography variant="subtitle1" color="#FA2871">
+						{(() => {
+							const createdAt = new Date(data?.metadata?.created_at);
+							const now = new Date();
+
+							// Calculate the difference in milliseconds
+							const differenceInMs = now - createdAt;
+
+							// Convert milliseconds to days
+							const differenceInDays = Math.floor(differenceInMs / (1000 * 60 * 60 * 24));
+
+							return new Intl.RelativeTimeFormat("en", {
+								numeric: "auto",
+							}).format(-differenceInDays, "day");
+						})()}
 					</Typography>
+
+
 				</Box>
 
 				<Box className={classes.actions_container}>

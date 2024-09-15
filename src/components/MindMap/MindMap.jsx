@@ -816,6 +816,9 @@ const MindMap = () => {
 										"& .custom-header": { // Target the custom header class
 											color: "#8A8A8A", // Change the header color
 										},
+										'& .makeStyles-root-17':{
+											color:"Green"
+										}
 									}}
 								/>
 							</Box>
