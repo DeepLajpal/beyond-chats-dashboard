@@ -13,26 +13,26 @@ import { useOrgContext } from 'context/OrgContext';
 
 export default function MobileBottomNav() {
   const [value, setValue] = React.useState(0);
-  const history = useHistory(); // Using useHistory for navigation
-	const { org } = useOrgContext();
+  const history = useHistory();
+  const { org } = useOrgContext();
 
   const handleNavChange = (event, newValue) => {
     setValue(newValue);
     switch (newValue) {
       case 0:
-        history.push(`/${encodeURIComponent(org.host_url)}/mind-map`);  // Navigate to Mind Map
+        history.push(`/${encodeURIComponent(org.host_url)}/mind-map`);
         break;
       case 1:
-        history.push("/");     // Navigate to Chats
+        history.push("/");
         break;
       case 2:
-        history.push(`/${encodeURIComponent(org.host_url)}/leads`);     // Navigate to Business Leads
+        history.push(`/${encodeURIComponent(org.host_url)}/leads`);
         break;
       case 3:
-        history.push(`/${encodeURIComponent(org.host_url)}/team`);      // Navigate to Team Management
+        history.push(`/${encodeURIComponent(org.host_url)}/team`);
         break;
       case 4:
-        history.push(`/${encodeURIComponent(org.host_url)}/config`);    // Navigate to Chatbot Configuration
+        history.push(`/${encodeURIComponent(org.host_url)}/config`);
         break;
       default:
         break;
@@ -40,13 +40,23 @@ export default function MobileBottomNav() {
   };
 
   return (
-    <Box sx={{ width: "100vw" }}>
-      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex:"1000" }} elevation={3}>
+    <Box sx={{ width: "100%" }}>
+      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: "1000" }} elevation={3}>
         <BottomNavigation
-        sx={{zIndex:"1000"}}
           showLabels
           value={value}
-          onChange={handleNavChange} // Handle navigation change
+          onChange={handleNavChange}
+          sx={{
+            '& .MuiBottomNavigationAction-root': {
+              maxWidth: '100px',  // Limit width for each action
+            },
+            '& .Mui-selected': {
+              fontSize: '0.875rem', // Ensure text size is not too large when selected
+              whiteSpace: 'nowrap', // Prevent text wrapping
+              overflow: 'hidden',   // Hide overflow if text is too long
+              textOverflow: 'ellipsis',  // Show ellipsis for truncated text
+            },
+          }}
         >
           <BottomNavigationAction label="Mind Map" icon={<TableChartIcon />} />
           <BottomNavigationAction label="Chats" icon={<InboxIcon />} />
