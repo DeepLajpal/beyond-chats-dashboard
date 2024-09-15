@@ -600,7 +600,7 @@ const MindMap = () => {
 							backgroundColor: "white",
 							width: isSmScreen ? "92vw" : "inherit",
 							margin: isSmScreen ? "auto" : "0",
-							height: isSmScreen ? "28vh" : "inherit",
+							height: isSmScreen ? "auto" : "inherit", // Allow height to grow based on content
 							marginTop: isSmScreen ? "4rem" : "0",
 						}}
 					>
@@ -625,7 +625,17 @@ const MindMap = () => {
 										</Button>
 									</Grid>
 									<Grid item>
-										<Typography variant="h6" component="span" align="center">
+										<Typography
+											variant="h6"
+											component="span"
+											align="center"
+											sx={{
+												display: 'flex',
+												flexDirection: 'column',
+												alignItems: 'center',
+												// Remove truncation styles
+											}}
+										>
 											Add Data
 										</Typography>
 									</Grid>
@@ -639,8 +649,8 @@ const MindMap = () => {
 									flexItem
 									sx={{
 										borderColor: "lightgray",
-										height: "56px", // Make sure this is same height as button
-										alignSelf: "center", // Align center
+										height: "56px", // Ensure this matches the button height
+										alignSelf: "center",
 									}}
 								/>
 							</Grid>
@@ -665,7 +675,17 @@ const MindMap = () => {
 										</Button>
 									</Grid>
 									<Grid item>
-										<Typography variant="h6" component="span" align="center">
+										<Typography
+											variant="h6"
+											component="span"
+											align="center"
+											sx={{
+												display: 'flex',
+												flexDirection: 'column',
+												alignItems: 'center',
+												// Remove truncation styles
+											}}
+										>
 											Data Training Status
 										</Typography>
 									</Grid>
@@ -679,7 +699,7 @@ const MindMap = () => {
 									flexItem
 									sx={{
 										borderColor: "lightgray",
-										height: "56px", // Consistent height with buttons
+										height: "56px", // Ensure this matches the button height
 										alignSelf: "center",
 									}}
 								/>
@@ -705,7 +725,17 @@ const MindMap = () => {
 										</Button>
 									</Grid>
 									<Grid item>
-										<Typography variant="h6" component="span" align="center">
+										<Typography
+											variant="h6"
+											component="span"
+											align="center"
+											sx={{
+												display: 'flex',
+												flexDirection: 'column',
+												alignItems: 'center',
+												// Remove truncation styles
+											}}
+										>
 											Ground Truths
 										</Typography>
 									</Grid>
@@ -713,6 +743,7 @@ const MindMap = () => {
 							</Grid>
 						</Grid>
 					</Box>
+
 
 
 					{/* Table Container Box */}
