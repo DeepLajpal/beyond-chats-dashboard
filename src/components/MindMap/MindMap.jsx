@@ -575,7 +575,7 @@ const MindMap = () => {
 				</form> */}
 
 
-				<Box sx={{width:isSmScreen? "100vw" : null}}>
+				<Box sx={{ width: isSmScreen ? "100vw" : null }}>
 					{isSmScreen ? <ResponsiveAppBar /> : null}
 					{!isSmScreen ? <Grid container spacing={2} mb={2} alignItems="center">
 						<Grid item xs={2}>
@@ -594,15 +594,14 @@ const MindMap = () => {
 						sx={{
 							padding: "2rem",
 							borderRadius: "1rem",
-							// marginTop: "5rem",
 							boxShadow: "0 0 9px 0px #eaeaea",
-							position:"relative",
-							zIndex:isSmScreen? "100" : "0",
-							backgroundColor:"white",
-							// border: isSmScreen? "2px solid black" : "0",
-							width: isSmScreen?"92vw" : "inherit",
-							margin: isSmScreen?"auto" : "0",
-							marginTop:isSmScreen? "4rem" : "0"
+							position: "relative",
+							zIndex: isSmScreen ? "100" : "0",
+							backgroundColor: "white",
+							width: isSmScreen ? "92vw" : "inherit",
+							margin: isSmScreen ? "auto" : "0",
+							height: isSmScreen ? "auto" : "inherit",
+							marginTop: isSmScreen ? "4rem" : "0",
 						}}
 					>
 						<Grid container alignItems="center" justifyContent="space-between" spacing={2}>
@@ -626,7 +625,16 @@ const MindMap = () => {
 										</Button>
 									</Grid>
 									<Grid item>
-										<Typography variant="h6" component="span" align="center">
+										<Typography
+											variant="h6"
+											component="span"
+											align="center"
+											sx={{
+												display: 'flex',
+												flexDirection: 'column',
+												alignItems: 'center',
+											}}
+										>
 											Add Data
 										</Typography>
 									</Grid>
@@ -635,7 +643,15 @@ const MindMap = () => {
 
 							{/* Vertical Divider */}
 							<Grid item>
-								<Divider orientation="vertical" flexItem sx={{ borderColor: "lightgray", height: "56px" }} />
+								<Divider
+									orientation="vertical"
+									flexItem
+									sx={{
+										borderColor: "lightgray",
+										height: "56px",
+										alignSelf: "center",
+									}}
+								/>
 							</Grid>
 
 							{/* Data Training Status Button */}
@@ -658,7 +674,16 @@ const MindMap = () => {
 										</Button>
 									</Grid>
 									<Grid item>
-										<Typography variant="h6" component="span" align="center">
+										<Typography
+											variant="h6"
+											component="span"
+											align="center"
+											sx={{
+												display: 'flex',
+												flexDirection: 'column',
+												alignItems: 'center',
+											}}
+										>
 											Data Training Status
 										</Typography>
 									</Grid>
@@ -667,7 +692,15 @@ const MindMap = () => {
 
 							{/* Vertical Divider */}
 							<Grid item>
-								<Divider orientation="vertical" flexItem sx={{ borderColor: "lightgray", height: "56px" }} />
+								<Divider
+									orientation="vertical"
+									flexItem
+									sx={{
+										borderColor: "lightgray",
+										height: "56px",
+										alignSelf: "center",
+									}}
+								/>
 							</Grid>
 
 							{/* Ground Truths Button */}
@@ -690,7 +723,16 @@ const MindMap = () => {
 										</Button>
 									</Grid>
 									<Grid item>
-										<Typography variant="h6" component="span" align="center">
+										<Typography
+											variant="h6"
+											component="span"
+											align="center"
+											sx={{
+												display: 'flex',
+												flexDirection: 'column',
+												alignItems: 'center',
+											}}
+										>
 											Ground Truths
 										</Typography>
 									</Grid>
@@ -698,6 +740,8 @@ const MindMap = () => {
 							</Grid>
 						</Grid>
 					</Box>
+
+
 
 					{/* Table Container Box */}
 					<Box sx={{ padding: "10px", padding: "2rem", borderRadius: "1rem", height: "100%", boxShadow: "0 0 9px 0px #eaeaea", marginTop: "2rem", marginBottom: isSmScreen ? "4rem" : "0" }} >
