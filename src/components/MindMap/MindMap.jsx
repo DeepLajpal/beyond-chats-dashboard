@@ -38,6 +38,7 @@ import Grid from '@mui/material/Grid';
 import styled from '@mui/system/styled';
 import { red } from "react-color/lib/helpers/color";
 import SearchIcon from '@mui/icons-material/Search';
+import MobileBottomNav from "components/Navbar/MobileBottomNav";
 
 const VectorData = lazy(() => import("./VectorData"));
 const CustomNoRowsOverlay = lazy(
@@ -833,6 +834,7 @@ const MindMap = () => {
 					/>
 				) : null}
 			</Suspense>
+
 		</>
 	);
 };
