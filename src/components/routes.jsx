@@ -29,7 +29,7 @@ import LogoDevIcon from "@mui/icons-material/LogoDev";
 import BusinessIcon from "@mui/icons-material/Business";
 import "@sweetalert2/theme-material-ui/material-ui.css";
 import "../assets/css/common/default.css";
-import { Backdrop, Typography } from "@mui/material";
+import { Backdrop, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useMemo } from "react";
 import Loader from "./common/NewLoader";
 import { useUserContext } from "context/UserContext.jsx";
@@ -40,6 +40,8 @@ import { useApiCall } from "./common/appHooks.js";
 import notificationPermission from "./common/notificationPermission";
 import { getMessaging, onMessage } from "firebase/messaging";
 import firebase from "./common/firebase";
+import MobileBottomNav from "./Navbar/MobileBottomNav";
+
 
 const ReactJoyride = lazy(() => import("react-joyride"));
 const MindMap = lazy(() => import("./MindMap/MindMap.jsx"));
@@ -57,6 +59,7 @@ const TeamManagement = lazy(
 );
 const Analytics = lazy(() => import("./Analytics/Analytics"));
 const Billing = lazy(() => import("./Billing/Billing"));
+
 
 // God Components
 const CreateNewOrg = lazy(() => import("./God/CreateNewOrg.jsx"));
@@ -277,6 +280,9 @@ function AppRoutes() {
 			};
 		}
 	}, [access_token]);
+	const theme = useTheme();
+
+	const isSmScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
 	return (
 		<Suspense fallback={<NewLoader firstPage={true} name="routes" />}>
@@ -294,6 +300,8 @@ function AppRoutes() {
 						setShowStartTutorial={setShowStartTutorial}
 						toggleLeftNav={toggleLeftNav}
 					/> */}
+			{isSmScreen? <MobileBottomNav/> : null}
+
 
 					<Suspense fallback={<NewLoader firstPage={true} name="routes" />}>
 						<Switch>

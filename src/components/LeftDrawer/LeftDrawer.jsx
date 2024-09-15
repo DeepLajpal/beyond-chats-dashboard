@@ -145,6 +145,7 @@ const LeftDrawer = ({ isOpened, toggleLeftNav, navOptions, setShowStartTutorial 
 					</IconButton>
 				</DrawerHeader>
 			</Tooltip>
+
 			<Divider /> {/* Divider between header and list */}
 
 			<List>
@@ -256,12 +257,11 @@ const LeftDrawer = ({ isOpened, toggleLeftNav, navOptions, setShowStartTutorial 
 						container
 						sx={{
 							// border: "2px solid black", 
-							padding: "0.5rem", // Increased padding for better spacing
-							borderRadius: "8px", // Add rounded corners for better visual appeal
+							padding: "0.5rem", 
+							borderRadius: "8px", 
 							width: "60%",
-							maxWidth: "600px", // Max width for better responsiveness
-							// backgroundColor: "#f5f5f5", // Light background color for contrast
-							boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", // Add subtle shadow for depth
+							maxWidth: "600px", 
+							boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", 
 						}}
 						justifyContent="center"
 						alignItems="center" // Center items vertically
@@ -276,8 +276,8 @@ const LeftDrawer = ({ isOpened, toggleLeftNav, navOptions, setShowStartTutorial 
 								variant="h5"
 								sx={{
 									fontWeight: "600",
-									fontSize: "1.25rem", // Adjust font size if needed
-									color: "#333", // Dark text color for readability
+									fontSize: "1.25rem", 
+									color: "#333",
 								}}
 							>
 								Ritika

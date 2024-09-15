@@ -38,6 +38,8 @@ import Grid from '@mui/material/Grid';
 import styled from '@mui/system/styled';
 import { red } from "react-color/lib/helpers/color";
 import SearchIcon from '@mui/icons-material/Search';
+import MobileBottomNav from "components/Navbar/MobileBottomNav";
+import ResponsiveAppBar from "components/Navbar/ResponsiveAppBar";
 
 const VectorData = lazy(() => import("./VectorData"));
 const CustomNoRowsOverlay = lazy(
@@ -473,6 +475,7 @@ const MindMap = () => {
 
 	return (
 		<>
+
 			<div className={classes.titleContainer} >
 				{/* <Box className={classes.action_box}>
 					<Button
@@ -572,8 +575,9 @@ const MindMap = () => {
 				</form> */}
 
 
-				<Box >
-					<Grid container spacing={2} mb={2} alignItems="center">
+				<Box sx={{width:isSmScreen? "100vw" : null}}>
+					{isSmScreen ? <ResponsiveAppBar /> : null}
+					{!isSmScreen ? <Grid container spacing={2} mb={2} alignItems="center">
 						<Grid item xs={2}>
 							<Typography variant="h4" component="span">
 								Hello Ritika 👋🏼,
@@ -584,14 +588,21 @@ const MindMap = () => {
 								This is the brain and the memory of the chatbot. You can add, edit and analyse , the source data being used to answer user queries from here.
 							</Typography>
 						</Grid>
-					</Grid>
+					</Grid> : null}
 
 					<Box
 						sx={{
 							padding: "2rem",
 							borderRadius: "1rem",
-							marginTop: "2rem",
+							// marginTop: "5rem",
 							boxShadow: "0 0 9px 0px #eaeaea",
+							position:"relative",
+							zIndex:isSmScreen? "100" : "0",
+							backgroundColor:"white",
+							// border: isSmScreen? "2px solid black" : "0",
+							width: isSmScreen?"92vw" : "inherit",
+							margin: isSmScreen?"auto" : "0",
+							marginTop:isSmScreen? "4rem" : "0"
 						}}
 					>
 						<Grid container alignItems="center" justifyContent="space-between" spacing={2}>
@@ -689,8 +700,8 @@ const MindMap = () => {
 					</Box>
 
 					{/* Table Container Box */}
-					<Box sx={{ padding: "10px", padding: "2rem", borderRadius: "1rem", height: "100%", boxShadow: "0 0 9px 0px #eaeaea", marginTop: "2rem", }} >
-						<Box sx={ {padding: "0.5rem", marginBottom: "0.5rem" }}>
+					<Box sx={{ padding: "10px", padding: "2rem", borderRadius: "1rem", height: "100%", boxShadow: "0 0 9px 0px #eaeaea", marginTop: "2rem", marginBottom: isSmScreen ? "4rem" : "0" }} >
+						<Box sx={{ padding: "0.5rem", marginBottom: "0.5rem" }}>
 							<Grid container alignItems="center" spacing={2} justifyContent="center" >
 								<Grid item xs={6} display="flex" ><Typography variant="h4" sx={{ fontWeight: "bold" }}>All Active Data</Typography> </Grid>
 
@@ -833,6 +844,7 @@ const MindMap = () => {
 					/>
 				) : null}
 			</Suspense>
+
 		</>
 	);
 };
