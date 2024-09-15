@@ -600,7 +600,7 @@ const MindMap = () => {
 							backgroundColor: "white",
 							width: isSmScreen ? "92vw" : "inherit",
 							margin: isSmScreen ? "auto" : "0",
-							height: isSmScreen ? "auto" : "inherit", // Allow height to grow based on content
+							height: isSmScreen ? "auto" : "inherit",
 							marginTop: isSmScreen ? "4rem" : "0",
 						}}
 					>
@@ -633,7 +633,6 @@ const MindMap = () => {
 												display: 'flex',
 												flexDirection: 'column',
 												alignItems: 'center',
-												// Remove truncation styles
 											}}
 										>
 											Add Data
@@ -649,7 +648,7 @@ const MindMap = () => {
 									flexItem
 									sx={{
 										borderColor: "lightgray",
-										height: "56px", // Ensure this matches the button height
+										height: "56px",
 										alignSelf: "center",
 									}}
 								/>
@@ -683,7 +682,6 @@ const MindMap = () => {
 												display: 'flex',
 												flexDirection: 'column',
 												alignItems: 'center',
-												// Remove truncation styles
 											}}
 										>
 											Data Training Status
@@ -699,7 +697,7 @@ const MindMap = () => {
 									flexItem
 									sx={{
 										borderColor: "lightgray",
-										height: "56px", // Ensure this matches the button height
+										height: "56px",
 										alignSelf: "center",
 									}}
 								/>
@@ -733,7 +731,6 @@ const MindMap = () => {
 												display: 'flex',
 												flexDirection: 'column',
 												alignItems: 'center',
-												// Remove truncation styles
 											}}
 										>
 											Ground Truths
