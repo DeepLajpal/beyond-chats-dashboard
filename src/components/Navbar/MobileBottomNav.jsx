@@ -32,7 +32,7 @@ export default function MobileBottomNav() {
         history.push(`/${encodeURIComponent(org.host_url)}/team`);
         break;
       case 4:
-        history.push(`/${encodeURIComponent(org.host_url)}/config`);
+        history.push(`/${encodeURIComponent(org.host_url)}/mind-map`);
         break;
       default:
         break;
@@ -40,23 +40,33 @@ export default function MobileBottomNav() {
   };
 
   return (
-    <Box >
-      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: "1000" }} elevation={3}>
+    <Box>
+      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1000 }} elevation={3}>
         <BottomNavigation
           showLabels
           value={value}
           onChange={handleNavChange}
           sx={{
             '& .MuiBottomNavigationAction-root': {
-              maxWidth: '100px',  // Limit width for each action
-              flex: 1, // Allow the actions to flexibly take up available space
-              minWidth: 0, // Avoid fixed min width so actions can resize
+              flex: 1,
+              minWidth: 0,
+              whiteSpace: 'nowrap',
+              fontSize: "0.7rem", 
+              padding:"10px",
+              '& .MuiSvgIcon-root': {
+                fontSize:"1.2rem"
+              },
             },
             '& .Mui-selected': {
-              fontSize: '0.875rem', // Ensure text size is not too large when selected
-              whiteSpace: 'nowrap', // Prevent text wrapping
-              overflow: 'hidden',   // Hide overflow if text is too long
-              textOverflow: 'ellipsis',  // Show ellipsis for truncated text
+              backgroundColor: "#2872FA", 
+              borderRadius: "0.5rem",
+              color: "white",
+              fontSize: "0.7rem !important",
+              '& .MuiSvgIcon-root': {
+                color: "white", 
+                fontSize:"1.2rem"
+
+              },
             },
           }}
         >
