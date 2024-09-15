@@ -32,7 +32,7 @@ export default function MobileBottomNav() {
         history.push(`/${encodeURIComponent(org.host_url)}/team`);
         break;
       case 4:
-        history.push(`/${encodeURIComponent(org.host_url)}/config`);
+        history.push(`/${encodeURIComponent(org.host_url)}/mind-map`);
         break;
       default:
         break;
