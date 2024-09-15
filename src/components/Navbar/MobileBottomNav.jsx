@@ -40,7 +40,7 @@ export default function MobileBottomNav() {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box >
       <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: "1000" }} elevation={3}>
         <BottomNavigation
           showLabels
@@ -49,6 +49,8 @@ export default function MobileBottomNav() {
           sx={{
             '& .MuiBottomNavigationAction-root': {
               maxWidth: '100px',  // Limit width for each action
+              flex: 1, // Allow the actions to flexibly take up available space
+              minWidth: 0, // Avoid fixed min width so actions can resize
             },
             '& .Mui-selected': {
               fontSize: '0.875rem', // Ensure text size is not too large when selected
