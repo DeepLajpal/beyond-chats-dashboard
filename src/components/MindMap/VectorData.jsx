@@ -8,22 +8,23 @@ const useStyles = makeStyles((theme) => ({
 	root: {
 		display: "flex",
 		flexDirection: "column",
-		justifyContent: "center",
-		alignItems: "center",
+		justifyContent: "space-between", // Space between elements
+		alignItems: "stretch", // Stretch items to full width
 		padding: "0.86rem",
 		borderRadius: "5px",
 		boxShadow: "0 0 0.15rem 0 rgba(224, 224, 224, 0.5)",
 		outline: "0.1rem solid rgba(224, 224, 224, 0.5)",
 		backgroundColor: "#fff",
 		marginBottom: "1rem",
-
+		width: "92vw",
+		boxSizing: "border-box", // Include padding and border in width/height
 	},
-
 	source_type_container: {
 		display: "flex",
 		width: "100%",
 		justifyContent: "flex-start",
 		alignItems: "center",
+		overflow: "hidden", // Hide overflow content
 	},
 	source_type: {
 		fontSize: "0.6rem",
@@ -33,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
 		padding: "0.25rem 0.5rem",
 		borderRadius: "0.5rem",
 		backgroundColor: "#f5f5f5",
+		whiteSpace: "nowrap", // Prevent text wrapping
+		overflow: "hidden", // Hide overflow content
+		textOverflow: "ellipsis", // Add ellipsis for overflowed text
 	},
 	footer_container: {
 		display: "flex",
@@ -51,12 +55,14 @@ const useStyles = makeStyles((theme) => ({
 	source_link: {
 		color: "var(--color5)",
 		textDecoration: "underline",
+		overflow: "hidden", // Hide overflow content
+		textOverflow: "ellipsis", // Add ellipsis for overflowed text
+		whiteSpace: "nowrap", // Prevent text wrapping
 	},
 	actions_container: {
 		display: "flex",
 		justifyContent: "flex-end",
 		alignItems: "center",
-		// gap: "0.5rem",
 	},
 }));
 
@@ -103,8 +109,6 @@ const VectorData = ({ data, handleOpenEditDialog, handleDelete }) => {
 							}).format(-differenceInDays, "day");
 						})()}
 					</Typography>
-
-
 				</Box>
 
 				<Box className={classes.actions_container}>

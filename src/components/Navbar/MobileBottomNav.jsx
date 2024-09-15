@@ -51,13 +51,16 @@ export default function MobileBottomNav() {
               flex: 1,
               minWidth: 0,
               whiteSpace: 'nowrap',
-              fontSize: "0.7rem", // Set consistent font size for all items
+              fontSize: "0.7rem", 
             },
             '& .Mui-selected': {
-              backgroundColor: "#2872FA", // Background for selected item
+              backgroundColor: "#2872FA", 
               borderRadius: "0.5rem",
               color: "white",
-              fontSize: "0.7rem", // Ensure the font size stays the same for selected item
+              fontSize: "0.7rem !important",
+              '& .MuiSvgIcon-root': {
+                color: "white", 
+              },
             },
           }}
         >

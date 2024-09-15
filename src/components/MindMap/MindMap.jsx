@@ -90,6 +90,7 @@ const useStyles = makeStyles((theme) => ({
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center",
+		color:"white"
 	},
 	tableRow: {
 		whiteSpace: "break-spaces",
@@ -575,7 +576,7 @@ const MindMap = () => {
 				</form> */}
 
 
-				<Box sx={{ width: isSmScreen ? "100vw" : null }}>
+				<Box sx={{ width: isSmScreen ? "100vw" : null, background:isSmScreen ? "linear-gradient(to bottom, #FAFAFA, #74B4FF)" : "none" }}>
 					{isSmScreen ? <ResponsiveAppBar /> : null}
 					{!isSmScreen ? <Grid container spacing={2} mb={2} alignItems="center">
 						<Grid item xs={2}>
@@ -744,7 +745,16 @@ const MindMap = () => {
 
 
 					{/* Table Container Box */}
-					<Box sx={{ padding: "10px", padding: "2rem", borderRadius: "1rem", height: "100%", boxShadow: "0 0 9px 0px #eaeaea", marginTop: "2rem", marginBottom: isSmScreen ? "4rem" : "0" }} >
+					<Box sx={{
+						padding: !isSmScreen ? "2rem" : 0,
+						borderRadius: "1rem",
+						height: "100%",
+						boxShadow: !isSmScreen? "0 0 9px 0px #eaeaea" : "none",
+						width: isSmScreen ? "92vw" : "inherit",
+						margin: isSmScreen ? "auto" : "0",
+						marginTop: "2rem",
+						marginBottom: isSmScreen ? "5rem" : "0",
+					}} >
 						<Box sx={{ padding: "0.5rem", marginBottom: "0.5rem" }}>
 							<Grid container alignItems="center" spacing={2} justifyContent="center" >
 								<Grid item xs={6} display="flex" ><Typography variant="h4" sx={{ fontWeight: "bold" }}>All Active Data</Typography> </Grid>
@@ -816,9 +826,7 @@ const MindMap = () => {
 										"& .custom-header": { // Target the custom header class
 											color: "#8A8A8A", // Change the header color
 										},
-										'& .makeStyles-root-17':{
-											color:"Green"
-										}
+
 									}}
 								/>
 							</Box>
@@ -828,8 +836,9 @@ const MindMap = () => {
 							<Pagination
 								page={page}
 								count={count}
-								sx={{ m: "10px auto" }}
+								sx={{ m: "10px auto", color:"white"}}
 								color="primary"
+								
 								renderItem={(item) => {
 									const searchParams = new URLSearchParams(location.search);
 									searchParams.set("page", item.page);
@@ -841,6 +850,7 @@ const MindMap = () => {
 										/>
 									);
 								}}
+								
 							/>
 						</Stack>
 					</Box>

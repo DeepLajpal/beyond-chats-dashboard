@@ -3,11 +3,7 @@ import { styled, alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import EditIcon from '@mui/icons-material/Edit';
-import Divider from '@mui/material/Divider';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import Typography from '@mui/material/Typography';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Google, WhatsApp } from '@mui/icons-material';
 
@@ -48,20 +44,25 @@ const StyledMenu = styled((props) => (
         ),
       },
     },
-    ...theme.applyStyles('dark', {
-      color: theme.palette.grey[300],
-    }),
   },
 }));
 
 export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [selectedOption, setSelectedOption] = React.useState("Beyond Chats"); 
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleMenuItemClick = (option) => {
+    setSelectedOption(option); 
+    handleClose(); 
   };
 
   return (
@@ -75,10 +76,9 @@ export default function CustomizedMenus() {
         disableElevation
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
-        sx={{background:"none",}}
-
+        sx={{ background: "none", paddingTop:"0", paddingBottom:"0" }}
       >
-        Select ORG
+        ORG
       </Button>
       <StyledMenu
         id="demo-customized-menu"
@@ -89,15 +89,23 @@ export default function CustomizedMenus() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={() => handleMenuItemClick("Beyond Chats")} disableRipple>
           <WhatsApp />
           Beyond Chats
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={() => handleMenuItemClick("Google")} disableRipple>
           <Google />
           Google
         </MenuItem>
+
       </StyledMenu>
+
+      {/* Display the selected option below the button */}
+      {selectedOption && (
+        <Typography variant="subtitle1" display="flex" justifyContent="flex-end" sx={{paddingRight:"0.9rem"}}>
+          {selectedOption}
+        </Typography>
+      )}
     </div>
   );
 }
