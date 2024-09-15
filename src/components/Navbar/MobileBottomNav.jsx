@@ -52,6 +52,10 @@ export default function MobileBottomNav() {
               minWidth: 0,
               whiteSpace: 'nowrap',
               fontSize: "0.7rem", 
+              padding:"10px",
+              '& .MuiSvgIcon-root': {
+                fontSize:"1.2rem"
+              },
             },
             '& .Mui-selected': {
               backgroundColor: "#2872FA", 
@@ -60,6 +64,8 @@ export default function MobileBottomNav() {
               fontSize: "0.7rem !important",
               '& .MuiSvgIcon-root': {
                 color: "white", 
+                fontSize:"1.2rem"
+
               },
             },
           }}

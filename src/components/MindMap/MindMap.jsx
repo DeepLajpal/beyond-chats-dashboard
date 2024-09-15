@@ -836,7 +836,7 @@ const MindMap = () => {
 							<Pagination
 								page={page}
 								count={count}
-								sx={{ m: "10px auto", color:"white"}}
+								sx={{ m: "10px auto"}}
 								color="primary"
 								
 								renderItem={(item) => {
