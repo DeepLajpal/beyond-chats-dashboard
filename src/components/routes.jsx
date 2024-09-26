@@ -295,11 +295,11 @@ function AppRoutes() {
 			<Switch>
 				<Route path="/">
                   {/* hide due to improved ui */}
-					{/* <Navbar
+					<Navbar
 						navOptions={navOptions}
 						setShowStartTutorial={setShowStartTutorial}
 						toggleLeftNav={toggleLeftNav}
-					/> */}
+					/>
 			{isSmScreen? <MobileBottomNav/> : null}
 
 
